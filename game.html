@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock-Paper-Scissor</title>
+    <link rel="stylesheet" href="./styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap">
+</head>
+
+<body>
+
+    <div class="top"><h1 id="score-player">5</h1><span style="color: white; font-size: 90px;">-</span><h1 id="score-comp">0</h1></div>
+    
+    <div class="box">
+        <div class="left">
+            <h1 style="font-size: 30px; color: white;">You</h1>
+            <img src="" alt="" id="img">
+            <div class="but">
+                <img src="./assets/rock-logo.png" id="rock-logo">
+                <img src="./assets/paper-logo.png" id="paper-logo">
+                <img src="./assets/scissors-logo.png" id="scissors-logo">
+            </div>
+        </div>
+        <div>
+            <img src="./assets/vs.png" id="vs">
+        </div>
+        <div class="right">
+            <h1 style="font-size: 30px; color: white;">Comp</h1>
+            <img src="" alt="" id="img-comp">
+        </div>
+    </div>
+
+    <div class="score">
+        <h1><span id="winner"> You </span>Won The Game!! </h1>
+        <button id="play-again" style="font-size: 20px; padding: 5px; background-color: #ffc434; color: white; border-radius: 5px; border: none; margin-bottom: 20px;">Play Again</button>
+    </div>
+
+
+</body>
+</html>
+<script src="./game.js"></script>
