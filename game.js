@@ -7,30 +7,37 @@ const scissors = document.getElementById("scissors-logo");
 let you = document.getElementById("score-player");
 let computer = document.getElementById("score-comp");
 
-let yourScore = 0;
-let computerScore = 0;
+var yourScore = 0;
+var computerScore = 0;
 
 you.innerHTML = 0
 computer.innerHTML = 0
 
-
+var yourChoice;
 // Putting onclick for displaying the player's hand
 rock.onclick = () => {
     var img = document.getElementById("img");
     img.src = "./assets/rock-hand.png";
-    compareHands()
+    yourChoice= "r1"
+    random()
+    decide()
+
 }
 
 paper.onclick = () => {
     var img = document.getElementById("img");
     img.src = "./assets/paper-hand.png";
-    compareHands()
+    yourChoice="p1"
+    random()
+    decide()
 }
 
 scissors.onclick = () => {
     var img = document.getElementById("img");
     img.src = "./assets/scissors-hand.png";
-    compareHands()
+    yourChoice="s1"
+    random()
+    decide()
 }
 
 // Computer random
@@ -40,42 +47,77 @@ var images = [
     "./assets/scissors-hand.png"
 ];
 
+var compChoice;
+
 function random() {
-    const randomImg = Math.floor(Math.random() * images.length);
+    var randomImg = Math.floor(Math.random() * images.length);
     var img = document.getElementById("img-comp");
     img.src = images[randomImg];
-}
-
-// Compare hands and increment scores
-function compareHands() {
-    random(); 
-
-    // Get the computer's choice
-    const imgYou = document.getElementById("img") 
-    const imgComp = document.getElementById("img-comp");
-    const computerChoice = imgComp.src;
-
-    // Determine the winner based on choices
-    // if(playerChoice ==="./assets/rock-hand.png" && computerChoice === "./assets/scissors-hand.png"){
-    //     console.log("hi")
-    // }
-
-
-    if (
-        (imgYou === "./assets/rock-hand.png" && computerChoice === "./assets/scissors-hand.png") ||
-        (imgYou === "./assets/paper-hand.png" && computerChoice === "./assets/rock-hand.png") ||
-        (imgYou === "./assets/scissors-hand.png" && computerChoice === "./assets/paper-hand.png")
-    ) {
-        // Player wins
-        console.log("hi")
-    } else {
-        // Computer wins
-        // computerScore++;
+    if(randomImg === 0){
+        compChoice = "r1"
+        console.log("1")
     }
-
-    // Update the score display
-    you.innerHTML = yourScore;
-    computer.innerHTML = computerScore;
+    else if(randomImg === 1){
+        compChoice = "p1"
+        console.log("2")
+    }
+    else{
+        compChoice = "s1"
+        console.log("3")
+    }
 }
 
-// You can add more logic for handling ties and declaring a winner as per your game's rules.
+function decide(){
+    if (yourChoice === "r1"){
+        if (compChoice === "s1"){
+            yourScore++
+            checkScore()
+        }else if (compChoice === "p1"){
+            computerScore++
+            checkScore()
+        }
+    }
+    else if (yourChoice === "p1"){
+        if (compChoice === "r1"){
+            yourScore++
+            checkScore()
+        }else if (compChoice === "s1"){
+            computerScore++
+            checkScore()
+        }
+    }
+    else if (yourChoice === "s1"){
+        if (compChoice === "p1"){
+            yourScore++
+            checkScore()
+        }else if (compChoice === "r1"){
+            computerScore++
+            checkScore()
+        }
+    }
+    
+    you.textContent = yourScore;
+    computer.textContent = computerScore;
+}
+
+
+
+function checkScore(){
+    var winner = document.getElementById("winner")
+    const score = document.getElementById("score")
+    if(yourScore==5){
+        winner.innerHTML = "You"
+        score.style.display = "block"
+        
+    }
+    else if (computerScore==5){
+        winner.innerHTML = "Computer"
+        score.style.display = "block"
+    }
+    
+    
+}
+
+document.getElementById("play-again").addEventListener("click", ()=>{
+    location.href = "./index.html"
+})
